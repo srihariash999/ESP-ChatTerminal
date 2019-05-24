@@ -323,10 +323,28 @@ Serial.println(p);
 String get_time()
 {
   String samay;
+ String beg = "http://api.thingspeak.com/apps/thinghttp/send_request?api_key=18OGDYOI5VV43ED8";
+HTTPClient http;  //Declare an object of class HTTPClient
+http.begin(beg);  //Specify request destination
+int httpCode = http.GET();                                                                  //Send the request
  
-
+if (httpCode > 0) { //Check the returning code
  
+  samay = http.getString();   //Get the request response payload
 
+samay.trim();  String beg = "http://api.thingspeak.com/apps/thinghttp/send_request?api_key=18OGDYOI5VV43ED8";
+HTTPClient http;  //Declare an object of class HTTPClient
+http.begin(beg);  //Specify request destination
+int httpCode = http.GET();                                                                  //Send the request
+ 
+if (httpCode > 0) { //Check the returning code
+ 
+  samay = http.getString();   //Get the request response payload
+
+samay.trim();
+}
+ 
+http.end();   //Close connection
 
 return samay;
 }
